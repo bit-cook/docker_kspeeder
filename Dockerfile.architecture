@@ -21,9 +21,12 @@ VOLUME /kspeeder-config
 ENV TZ=Asia/Shanghai
 
 ENV KSPEEDER_PORT=5443
-ENV KSPEEDER_AMDINPORT=5003
+ENV KSPEEDER_AMDIN_PORT=5003
 ENV KSPEEDER_CONFIG=/kspeeder-config
 ENV KSPEEDER_DATA=/kspeeder-data
 
-CMD [ "/usr/bin/kspeeder"]
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
 
