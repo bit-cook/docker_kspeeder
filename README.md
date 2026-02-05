@@ -47,7 +47,6 @@ docker run -d \
 ## 节点与配置
 - `KS_USER_NODES_CONFIG`：默认 `/kspeeder-config/nodes.yaml`，推荐 `docker` + `proxies` + `domainfold` 块联合配置镜像 & proxy 节点。
 - `KS_USER_MIRROR_CONFIG`：兼容旧 `mirrors.yaml` 配置，不建议添加新项；优先写入 `nodes.yaml`。
-- `kspeeder.yaml`：entrypoint 继续写 `mirrors:` skeleton 以便旧版逻辑不崩溃（如果有人还在用 `conf.loadUserMirrorConfig`）。
 
 ## 配置说明
 - 端口配置：`KSPEEDER_PORT` / `KSPEEDER_ADMIN_PORT` 默认分别监听 5443/5003。
