@@ -71,6 +71,7 @@ docker-compose up -d
 - 节点配置：
   - `KS_USER_NODES_CONFIG` 用来指定 `nodes.yaml` 的路径，容器默认设置为 `/kspeeder-config/nodes.yaml`，建议把节点清单写在该位置或通过环境变量指向你的自定义文件。
   - 为了兼容旧的 docker 镜像源配置，entrypoint 仍会导出 `KS_USER_MIRROR_CONFIG`，但该 envvar 目前已废弃；优先把镜像源配置写到 `nodes.yaml` 的 `docker`/`proxies` block 下。若真的需要旧格式，也请把 `mirrors.yaml` 挂载进容器并显式设置 `KS_USER_MIRROR_CONFIG`。
+  - 首次启动时，entrypoint 会从容器内置的 `/usr/share/kspeeder/nodes.yaml.sample` 拷贝出一个带注释的样板 `/kspeeder-config/nodes.yaml`，展示 `docker`、`domainfold`、`proxies` 等块；直接编辑该文件或通过 `KS_USER_NODES_CONFIG` 指向自己的 `nodes.yaml` 即可生效。
 
 ## 使用说明
 - 配置docker镜像服务地址

@@ -24,9 +24,24 @@ fi
 
 export KS_USER_MIRROR_CONFIG="$CONFIG_FILE"
 
-# default nodes config path if the user did not supply one
+NODES_FILE="${KS_USER_NODES_CONFIG:-${CONFIG_DIR}/nodes.yaml}"
 if [ -z "${KS_USER_NODES_CONFIG:-}" ]; then
-  export KS_USER_NODES_CONFIG="${CONFIG_DIR}/nodes.yaml"
+  export KS_USER_NODES_CONFIG="$NODES_FILE"
+fi
+
+NODE_DIR="$(dirname "$NODES_FILE")"
+if [ ! -d "$NODE_DIR" ]; then
+  mkdir -p "$NODE_DIR" 2>/dev/null || true
+fi
+
+# ensure nodes config template exists so users see how to configure docker/domainfold/proxies
+if [ ! -f "$NODES_FILE" ]; then
+  SAMPLE_NODES_FILE="/usr/share/kspeeder/nodes.yaml.sample"
+  if [ -f "$SAMPLE_NODES_FILE" ]; then
+    cp "$SAMPLE_NODES_FILE" "$NODES_FILE"
+  else
+    touch "$NODES_FILE"
+  fi
 fi
 
 # 2) Simple supervise loop with trap

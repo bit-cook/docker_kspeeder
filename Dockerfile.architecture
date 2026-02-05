@@ -11,6 +11,9 @@ ADD dest /dest
 RUN set -ex \
   cd /dest && /dest/kspeeder-install.sh "${TARGETPLATFORM}" && cd / && rm -rf /dest
 
+RUN mkdir -p /usr/share/kspeeder
+ADD nodes.sample.yaml /usr/share/kspeeder/nodes.yaml.sample
+
 EXPOSE 5443
 EXPOSE 5003
 
@@ -29,4 +32,3 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 CMD ["/entrypoint.sh"]
-

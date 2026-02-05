@@ -1,0 +1,36 @@
+# nodes.yaml sample
+# Populate the blocks below to configure docker/ghcr mirrors, domainfold upstreams, and shared proxies.
+# Remove the comments once you add live entries; the file is copied to KS_USER_NODES_CONFIG on first start.
+
+docker:
+  dockerhub:
+    # - url: https://docker.1ms.run
+    #   priority: 1
+    #   cloudflare: false
+    #   display_name: 1ms-docker
+  ghcr:
+    # - url: https://ghcr.io/your-org
+    #   priority: 1
+    #   cloudflare: false
+    #   display_name: ghcr-node
+
+domainfold:
+  upstreams:
+    # - url: https://your.sync.endpoint
+    #   stream_type: core
+    #   speed_path: /gh/linkease/istore-packages/releases/download/prebuilt/quickstart-binary-0.11.9.tar.gz
+
+proxies:
+  docker: true
+  domainfold: true
+  registries: []
+  upstreams: []
+  global_speed_url: https://github.com/linkease/istore-packages/releases/download/prebuilt/quickstart-binary-0.11.9.tar.gz
+  nodes:
+    # - url: socks5://192.168.0.1:1080
+    #   display_name: lan-socks5
+    #   enabled: true
+    #   docker: true
+    #   domainfold: true
+    #   registries: []
+    #   upstreams: []
